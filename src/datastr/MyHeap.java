@@ -69,7 +69,7 @@ public class MyHeap<Ttype> {
 		Ttype prioElement = heap[0];
 		heap[0] = heap[counter-1];
 		counter--;
-		//TODO reaheapDown()
+		reheapDown(0);
 		return prioElement;
 		
 	}
@@ -86,6 +86,41 @@ public class MyHeap<Ttype> {
 	}
 	
 	//TODO print() - rekursīvo
+	public void print2() throws Exception
+	{
+		if(isEmpty()) throw new Exception("Array is empty and it "
+				+ "is not possible to print elements");
+		
+		//TODO printRecursiveHelp
+		
+	}
+	private void printRecursiveHelp(int indexOfElement) {
+		
+		Ttype element = heap[indexOfElement];
+		
+		System.out.print("P: " +element + " ");
+		
+		//1. noskaidrot kreisā bērna index
+		int leftChIndex = indexOfElement * 2 + 1;
+		//2. noskaidrot laba bērna index
+		int rightChIndex = indexOfElement * 2 + 2;
+		//eksistē kreisais bērns
+		if(leftChIndex < counter){
+			Ttype leftCh = heap[leftChIndex];
+			System.out.print("LC: " + leftCh + " [" + element + "]");
+			printRecursiveHelp(leftChIndex);
+		}
+		//eksistē labais bērns
+		if(rightChIndex < counter){
+			Ttype rightCh = heap[rightChIndex];
+			System.out.print("RC: " + rightCh + " [" + element + "]");
+			printRecursiveHelp(rightChIndex);
+		}
+		
+	}
+	
+	
+	
 
 	public void makeEmpty() {
 		counter = 0;
@@ -129,8 +164,70 @@ public class MyHeap<Ttype> {
 		
 	}
 	
-	
-	
+	private void reheapDown(int indexOfElement) {
+		//TODO
+		//1. noskaidrot kreisā bērna index
+		int leftChIndex = indexOfElement * 2 + 1;
+		//2. noskaidrot laba bērna index
+		int rightChIndex = indexOfElement * 2 + 2;
+		
+		
+		
+		//3. noskaidrot, cik bernu ir
+		if(leftChIndex < counter && rightChIndex < counter)
+		{
+		//3. 1. ja ir abi bērni, tad tos salīdzināt un atrast lielāko
+			Ttype element = heap[indexOfElement];
+			Ttype rightCh = heap[rightChIndex];
+			Ttype leftCh = heap[leftChIndex];
+			//ja kreisais bērns ir lielāks par labo bērnu
+			if(((Comparable)(leftCh)).compareTo(rightCh)==1)
+			{
+				//kreisais berns ir lielāks arī par savu vecaku (element)
+				if(  ((Comparable)(leftCh)).compareTo(element) ==1  )
+				{
+					swap(indexOfElement, leftChIndex); 
+					reheapDown(leftChIndex);
+				}
+			}
+			//labais bērns būs lielāks vai vienāds ar kreiso bērnu
+			else
+			{
+				//ja labais bērns ir arī lielāķs par savu vecāku (element)
+				if(  ((Comparable)(rightCh)).compareTo(element)  == 1 )
+				{
+					swap(indexOfElement, rightChIndex);
+					reheapDown(rightChIndex);
+				}
+				
+			}
+		//3.1.1 lielāko tālāk salīdzina ar elementu un pēc 
+		//nepieciešamības maina vietām
+		}
+		else if(leftChIndex < counter && rightChIndex >= counter)
+		{
+			//3.2. ja ir tikai viens bērns(tikai kreisais)
+			Ttype element = heap[indexOfElement];
+			Ttype leftCh = heap[leftChIndex];
+			//kreisais bērns ir lielāks par savu vecāku (element)
+			
+			if(  ((Comparable)(leftCh)).compareTo(element) ==1  )
+			{
+				swap(indexOfElement, leftChIndex);
+				
+			}
+		
+		//3.3.ja bērnu nav??? TODO var droši dzest so gadījumu, jo tajā nekas nav jādara
+		else if(leftChIndex >= counter && rightChIndex >= counter)
+		{
+			
+		}
+		
+
+	}
 	
 
+	
+	}
 }
+
