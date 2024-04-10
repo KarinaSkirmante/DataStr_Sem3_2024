@@ -58,7 +58,7 @@ public class MyHeap<Ttype> {
 		
 		heap[counter] = element;
 		counter++;
-		//TODO reheapUp();
+		reheapUp(counter-1);
 		
 	}
 	
@@ -95,9 +95,39 @@ public class MyHeap<Ttype> {
 	}
 	
 	
+	private void reheapUp(int indexOfElement) {
+		
+		//kreisa berna index = vecaka index * 2 + 1
+		//laba berna index = vecaka index * 2 + 2
+		
+		//(kreisa berna index - 1)/2 =  vecaka index <- izmantojam abos bērna gadījumos
+		//(laba berna index -2)/2 = vecaka index
+		
+		int indexParent = (indexOfElement - 1)/2;
+		if(indexParent >= 0) {
+			Ttype element = heap[indexOfElement];
+			Ttype parent = heap[indexParent];
+			//ja elements ir lielāks par savu vecaku
+			if( ((Comparable)(element)).compareTo(parent) == 1){
+				//mainām vietām
+				swap(indexOfElement, indexParent);
+				reheapUp(indexParent);	
+				
+			}
+			
+			
+			
+		}
+		
+
+	}
 	
-	
-	
+	private void swap(int index1, int index2) {
+		Ttype temp = heap[index1];
+		heap[index1] = heap[index2];
+		heap[index2] = temp;
+		
+	}
 	
 	
 	
