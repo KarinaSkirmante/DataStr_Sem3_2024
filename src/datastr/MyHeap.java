@@ -91,7 +91,7 @@ public class MyHeap<Ttype> {
 		if(isEmpty()) throw new Exception("Array is empty and it "
 				+ "is not possible to print elements");
 		
-		//TODO printRecursiveHelp
+		printRecursiveHelp(0);
 		
 	}
 	private void printRecursiveHelp(int indexOfElement) {
