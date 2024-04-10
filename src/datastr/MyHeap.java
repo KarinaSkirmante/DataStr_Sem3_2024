@@ -92,6 +92,7 @@ public class MyHeap<Ttype> {
 				+ "is not possible to print elements");
 		
 		printRecursiveHelp(0);
+		System.out.println();
 		
 	}
 	private void printRecursiveHelp(int indexOfElement) {
@@ -107,13 +108,13 @@ public class MyHeap<Ttype> {
 		//eksistē kreisais bērns
 		if(leftChIndex < counter){
 			Ttype leftCh = heap[leftChIndex];
-			System.out.print("LC: " + leftCh + " [" + element + "]");
+			System.out.println("LC: " + leftCh + " [" + element + "]");
 			printRecursiveHelp(leftChIndex);
 		}
 		//eksistē labais bērns
 		if(rightChIndex < counter){
 			Ttype rightCh = heap[rightChIndex];
-			System.out.print("RC: " + rightCh + " [" + element + "]");
+			System.out.println("RC: " + rightCh + " [" + element + "]");
 			printRecursiveHelp(rightChIndex);
 		}
 		
